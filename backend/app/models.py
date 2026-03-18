@@ -29,3 +29,12 @@ class Estudiante(Base):
     codigo_personal = Column(String, unique=True, index=True)
     grado = Column(String)
     seccion = Column(String)
+
+class Nota(Base):
+    __tablename__ = "notas"
+
+    id = Column(Integer, primary_key=True, index=True)
+    id_estudiante = Column(Integer, ForeignKey("estudiantes.id"))
+    id_actividad = Column(Integer) # Aquí podrías conectar con una tabla de 'Actividades'
+    punteo = Column(Integer)
+    comentario = Column(String)

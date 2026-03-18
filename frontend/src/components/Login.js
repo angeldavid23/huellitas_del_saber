@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importamos el hook para navegar
+import { useNavigate } from 'react-router-dom';
 import '../App.css'; 
 
 const Login = () => {
-  // Estados para capturar los datos
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Inicializamos la función de navegación
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,10 +19,14 @@ const Login = () => {
       const data = await response.json();
       
       if (response.ok && data.success) {
-        // En lugar de alert, redirigimos directamente al Dashboard
+        // --- CAMBIO CLAVE AQUÍ ---
+        // Guardamos el objeto completo que viene de la BD (nombre, cargo, id, etc.)
+        // data.user debe ser el objeto que envía tu FastAPI
+        localStorage.setItem('usuario', JSON.stringify(data.user));
+        
         navigate('/dashboard'); 
       } else {
-        alert("Usuario o contraseña incorrectos");
+        alert(data.message || "Usuario o contraseña incorrectos");
       }
     } catch (error) {
       console.error("Error al conectar con el backend:", error);
@@ -33,7 +36,6 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {/* Lado Izquierdo */}
       <div className="login-sidebar">
         <div>
           <div className="logo-box">
@@ -45,7 +47,6 @@ const Login = () => {
         <p style={{fontSize: '12px', opacity: 0.6}}>GUATEMALA 2026</p>
       </div>
 
-      {/* Lado Derecho */}
       <div className="login-form-section">
         <h2 style={{fontSize: '32px', marginBottom: '10px'}}>Bienvenido</h2>
         <p style={{color: '#888', marginBottom: '30px'}}>Ingresa tus credenciales</p>

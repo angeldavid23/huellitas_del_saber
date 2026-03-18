@@ -1,0 +1,245 @@
+/* Estructura Principal */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw; /* Asegura el ancho total */
+  background-color: #f0f5fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Evita scroll doble innecesario */
+}
+
+/* SIDEBAR (Barra Lateral) */
+.sidebar {
+  width: 260px;
+  min-width: 260px; /* Evita que se encoja */
+  background-color: #001D41;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.sidebar-logo {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 25px;
+  margin-bottom: 50px;
+}
+
+.menu-section-title {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #8fa3ad;
+  padding: 0 25px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.menu-item {
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menu-item.active {
+  background-color: #003375;
+  border-left: 4px solid #4facfe;
+}
+
+.menu-item .materia {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.menu-item .grado-seccion {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px 25px;
+  font-size: 11px;
+  opacity: 0.5;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-shrink: 0; /* Evita que el header se aplaste */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #0047AB;
+  border-radius: 50%;
+}
+
+/* TARJETA DE CONTENIDO (La parte blanca) */
+.content-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  flex: 1; /* Esto hace que ocupe TODO el espacio restante hacia abajo */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* Espacio al final */
+  overflow: hidden; /* Para que las tablas no se salgan de los bordes redondeados */
+}
+
+/* MENSAJE DE BIENVENIDA CENTRADO */
+.welcome-msg {
+  flex: 1; /* Ocupa todo el alto de la card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-msg h2 {
+    color: #001D41;
+    margin-bottom: 10px;
+}
+
+/* AJUSTE PARA TABLAS DENTRO DE LA CARD */
+.estudiantes-table-container {
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.sidebar-footer-container {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #e60000;
+}
+
+.btn-primary {
+    background: #0047AB; 
+    color: white; 
+    border: none; 
+    padding: 12px 25px; 
+    border-radius: 10px; 
+    font-weight: 600; 
+    cursor: pointer;
+}
+
+.empty-state {
+    text-align: center; 
+    padding: 60px 20px; 
+    border: 2px dashed #e0e0e0; 
+    border-radius: 15px; 
+    background-color: #fafafa;
+}
+
+/* Ajuste para que el cuerpo de la tarjeta use todo el espacio */
+.card-body {
+    padding: 0; /* Quitamos padding para que la tabla llegue a los bordes si es necesario */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    flex: 1;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.estudiantes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.estudiantes-table th {
+    background-color: #f8fbff;
+    color: #001D41;
+    text-align: left;
+    padding: 18px 30px;
+    font-size: 14px;
+    border-bottom: 2px solid #edf2f7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estudiantes-table td {
+    padding: 18px 30px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #444;
+    font-size: 15px;
+}
+
+.estudiantes-table tr:hover {
+    background-color: #f9fcff; /* Efecto sutil al pasar el mouse */
+}
+
+.nombre-estudiante {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.codigo-estudiante {
+    font-family: 'Courier New', Courier, monospace; /* Estilo de código para el ID */
+    color: #718096;
+}
+
+/* Animación de entrada */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

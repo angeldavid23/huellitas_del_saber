@@ -35,3 +35,16 @@ def obtener_asignaciones(docente_id: int, db: Session = Depends(database.get_db)
     # Buscamos solo las materias que te pertenecen a ti
     clases = db.query(models.Asignacion).filter(models.Asignacion.id_docente == docente_id).all()
     return clases
+
+# Agrega esto a backend/app/main.py
+
+@app.get("/api/estudiantes/{grado}/{seccion}")
+def obtener_estudiantes(grado: str, seccion: str, db: Session = Depends(database.get_db)):
+    # Buscamos en la base de datos alumnos que coincidan con ambos criterios
+    alumnos = db.query(models.Estudiante).filter(
+        models.Estudiante.grado == grado,
+        models.Estudiante.seccion == seccion
+    ).all()
+    
+    # Si no hay alumnos, devolvemos una lista vacía [] en lugar de un error
+    return alumnos
