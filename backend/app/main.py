@@ -29,3 +29,9 @@ def login(datos: dict, db: Session = Depends(database.get_db)):
         raise HTTPException(status_code=401, detail="Credenciales incorrectas")
     
     return {"success": True, "user": {"nombre": user.nombre, "id": user.id}}
+
+@app.get("/api/asignaciones/{docente_id}")
+def obtener_asignaciones(docente_id: int, db: Session = Depends(database.get_db)):
+    # Buscamos solo las materias que te pertenecen a ti
+    clases = db.query(models.Asignacion).filter(models.Asignacion.id_docente == docente_id).all()
+    return clases
