@@ -1,0 +1,13 @@
+# Carpetas pesadas que se descargan con comandos, no se suben
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Archivos de Python innecesarios
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Archivos de configuración de VS Code
+.vscode/
