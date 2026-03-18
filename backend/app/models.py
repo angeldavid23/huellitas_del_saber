@@ -1,6 +1,4 @@
 # backend/app/models.py
-
-# MODIFICA ESTA LÍNEA (Agrega ForeignKey al final)
 from sqlalchemy import Column, Integer, String, ForeignKey 
 from .database import Base
 
@@ -20,3 +18,14 @@ class Asignacion(Base):
     materia = Column(String)
     # Ahora que ya importamos ForeignKey, esta línea funcionará:
     id_docente = Column(Integer, ForeignKey("usuarios.id"))
+
+# backend/app/models.py (Continuación)
+
+class Estudiante(Base):
+    __tablename__ = "estudiantes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    nombre = Column(String)
+    codigo_personal = Column(String, unique=True, index=True)
+    grado = Column(String)
+    seccion = Column(String)
